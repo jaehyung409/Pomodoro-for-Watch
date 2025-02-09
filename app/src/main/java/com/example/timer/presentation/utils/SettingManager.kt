@@ -3,39 +3,23 @@ package com.example.timer.presentation.utils
 import android.content.Context
 import android.content.SharedPreferences
 
-class SettingsManager(context: Context) {
-    private val prefs: SharedPreferences =
-        context.getSharedPreferences("pomodoro_prefs", Context.MODE_PRIVATE)
+class SettingManager(context: Context) {
+    private val sharedPreferences: SharedPreferences =
+        context.getSharedPreferences("settings", Context.MODE_PRIVATE)
 
-    fun setFocusTime(minutes: Int) {
-        prefs.edit().putInt("FOCUS_TIME", minutes).apply()
-    }
+    var focusTime: Int
+        get() = sharedPreferences.getInt("FOCUS_TIME", 25)
+        set(value) = sharedPreferences.edit().putInt("FOCUS_TIME", value).apply()
 
-    fun getFocusTime(): Int {
-        return prefs.getInt("FOCUS_TIME", 25)
-    }
+    var shortBreakTime: Int
+        get() = sharedPreferences.getInt("SHORT_BREAK_TIME", 5)
+        set(value) = sharedPreferences.edit().putInt("SHORT_BREAK_TIME", value).apply()
 
-    fun setShortBreakTime(minutes: Int) {
-        prefs.edit().putInt("SHORT_BREAK_TIME", minutes).apply()
-    }
+    var longBreakTime: Int
+        get() = sharedPreferences.getInt("LONG_BREAK_TIME", 15)
+        set(value) = sharedPreferences.edit().putInt("LONG_BREAK_TIME", value).apply()
 
-    fun getShortBreakTime(): Int {
-        return prefs.getInt("SHORT_BREAK_TIME", 5)
-    }
-
-    fun setLongBreakTime(minutes: Int) {
-        prefs.edit().putInt("LONG_BREAK_TIME", minutes).apply()
-    }
-
-    fun getLongBreakTime(): Int {
-        return prefs.getInt("LONG_BREAK_TIME", 15)
-    }
-
-    fun setAutoSwitch(enabled: Boolean) {
-        prefs.edit().putBoolean("AUTO_SWITCH", enabled).apply()
-    }
-
-    fun getAutoSwitch(): Boolean {
-        return prefs.getBoolean("AUTO_SWITCH", false)
-    }
+    var isAutoSwitchEnabled: Boolean
+        get() = sharedPreferences.getBoolean("AUTO_SWITCH", false)
+        set(value) = sharedPreferences.edit().putBoolean("AUTO_SWITCH", value).apply()
 }
