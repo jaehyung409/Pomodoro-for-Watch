@@ -55,6 +55,8 @@ dependencies {
     implementation(libs.material3.android)
     implementation(libs.compose.material3)
     implementation(libs.compose.material.core)
+    implementation(libs.guava)
+    implementation(libs.androidx.wear.tiles)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)

@@ -44,6 +44,15 @@
             android:foregroundServiceType="shortService"
             android:exported="false"/>
 
+        <service
+            android:name=".presentation.service.TileService"
+            android:exported="true"
+            tools:ignore="SquareAndRoundTilePreviews">
+            <intent-filter>
+                <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
+            </intent-filter>
+        </service>
+
         <receiver
             android:name=".presentation.service.PomodoroAlarmReceiver"
             android:exported="true"

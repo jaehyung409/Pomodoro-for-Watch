@@ -14,6 +14,8 @@ composeNavigation = "1.4.0"
 material3Android = "1.3.1"
 composeMaterial3 = "1.0.0-alpha32"
 composeMaterialCore = "1.4.0"
+guava = "32.0.1-jre"
+wearTilesVersion = "1.0.0-alpha01"
 
 [libraries]
 play-services-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "playServicesWearable" }
@@ -35,7 +37,8 @@ compose-navigation = { group = "androidx.wear.compose", name = "compose-navigati
 material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 compose-material3 = { group = "androidx.wear.compose", name = "compose-material3", version.ref = "composeMaterial3" }
 compose-material-core = { group = "androidx.wear.compose", name = "compose-material-core", version.ref = "composeMaterialCore" }
-
+guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
+androidx-wear-tiles = { group = "androidx.wear", name = "wear-tiles", version.ref = "wearTilesVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
