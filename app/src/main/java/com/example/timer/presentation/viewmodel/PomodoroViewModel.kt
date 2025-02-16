@@ -103,12 +103,12 @@ class PomodoroViewModel(context: Context) : ViewModel() {
 
         if (_isFocusMode.value) {
             _currentCycle.value++
-            _totalTime.value = if (_currentCycle.value ==  3) {
+            _totalTime.value = if (_currentCycle.value ==  4) {
                 settingManager.longBreakTime * 60L
             } else {
                 settingManager.shortBreakTime * 60L
             }
-            if (currentCycle.value == 3) {
+            if (currentCycle.value == 4) {
                 _currentCycle.value = 0
             }
         } else {

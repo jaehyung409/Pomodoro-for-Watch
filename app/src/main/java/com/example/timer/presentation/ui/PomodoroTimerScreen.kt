@@ -78,7 +78,7 @@ fun PomodoroTimerScreen(viewModel: PomodoroViewModel, context: Context) {
                     color = MaterialTheme.colors.onPrimary
                 )
                 Text(
-                    text = "$currentCycle / 3",
+                    text = "$currentCycle / 4",
                     fontSize = MaterialTheme.typography.body2.fontSize,
                     color = MaterialTheme.colors.onPrimary
                 )
