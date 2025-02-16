@@ -54,7 +54,9 @@ class PomodoroViewModel(context: Context) : ViewModel() {
         startTime = SystemClock.elapsedRealtime()
         savedRemainingTime = _remainingTime.value
         scheduleAlarm(savedRemainingTime, PomodoroAlarmReceiver.ACTION_TIMER_FINISH, context)
-        scheduleAlarm(savedRemainingTime / 2, PomodoroAlarmReceiver.ACTION_TIMER_HALF, context)
+        if (savedRemainingTime > totalTime.value / 2) {
+            scheduleAlarm(savedRemainingTime - totalTime.value / 2, PomodoroAlarmReceiver.ACTION_TIMER_HALF, context)
+        }
     }
 
     fun pause(context: Context) {
@@ -72,7 +74,9 @@ class PomodoroViewModel(context: Context) : ViewModel() {
 
         startTime = SystemClock.elapsedRealtime()
         scheduleAlarm(savedRemainingTime,PomodoroAlarmReceiver.ACTION_TIMER_FINISH, context)
-        scheduleAlarm(savedRemainingTime / 2, PomodoroAlarmReceiver.ACTION_TIMER_HALF, context)
+        if (savedRemainingTime > totalTime.value / 2) {
+            scheduleAlarm(savedRemainingTime - totalTime.value / 2, PomodoroAlarmReceiver.ACTION_TIMER_HALF, context)
+        }
     }
 
     fun reset(context: Context) {
@@ -152,10 +156,13 @@ class PomodoroViewModel(context: Context) : ViewModel() {
     }
 
     private fun cancelAlarm(action: String, context: Context) {
-        val intent = Intent(context, PomodoroAlarmReceiver::class.java)
+        val intent = Intent(context, PomodoroAlarmReceiver::class.java).apply {
+            this.action = action
+        }
         val pendingIntent = PendingIntent.getBroadcast(
             context, action.hashCode(), intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.cancel(pendingIntent)
     }
 
